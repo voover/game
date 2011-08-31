@@ -20,8 +20,8 @@ $achievements =
           'desc'  => '',
           'image' => ''));
 
-$smarty->assign('achievement', $achievements[$_REQUEST['id']]);
-$smarty->display('achievement.tpl');
+$smarty->assign('achievements', $achievements);
+$smarty->display('main.tpl');
   
               
         

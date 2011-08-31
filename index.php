@@ -9,5 +9,8 @@ $smarty->setCacheDir('smarty/cache');
 $smarty->setConfigDir('smarty/configs');
 
 $action = $_REQUEST['action'];
+if(!$action) {
+  $action = 'main';
+}
 
 require($action.'.php');
