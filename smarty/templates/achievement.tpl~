@@ -1,0 +1,7 @@
+<html>
+  <head>
+    <title>{$name}</title>
+  </head>
+  <body>
+  </body>
+</html>	
