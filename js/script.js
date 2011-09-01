@@ -1,7 +1,7 @@
 siteAddress = 'http://tenar.megiteam.pl/game/';
 
 function doLog(message) {
-  message = message.replace('<br>', '\n');
+  message = message.replace('/<br>/g', '\n');
   if (message.substr(-1) != '\n') {
     message += '\n';
   }
