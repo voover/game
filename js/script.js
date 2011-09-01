@@ -1,12 +1,14 @@
 siteAddress = 'http://tenar.megiteam.pl/game/';
 
+function doLog(message) {
+  $('#logs').html($('#logs').html() + message);
+}
+
 function grantCheevo(id) {
   $.ajax({
     url: siteAddress + '?action=graph&uid='+userID+'&what=grant_cheevo&cheevo='+id,
     success: function( data ) {
-      if (console && console.log){
-        console.log( 'Sample of data:', data.slice(0,100) );
-      }
+      doLog(data);
     }
   });
 }
@@ -15,9 +17,7 @@ function removeCheevo(id) {
   $.ajax({
     url: siteAddress + '?action=graph&uid='+userID+'&what=remove_cheevo&cheevo='+id,
     success: function( data ) {
-      if (console && console.log){
-        console.log( 'Sample of data:', data.slice(0,100) );
-      }
+      doLog(data);
     }
   });
 }
@@ -26,9 +26,7 @@ function reregisterCheevos(dom) {
   $.ajax({
     url: siteAddress + '?action=graph&what=reregister&sub='+dom,
     success: function( data ) {
-      if (console && console.log){
-        console.log( 'Sample of data:', data.slice(0,100) );
-      }
+      doLog(data);
     }
   });
 }
@@ -72,3 +70,5 @@ FB.getLoginStatus(
   }
 );
 
+
+doLog('Test');

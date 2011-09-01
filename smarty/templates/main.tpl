@@ -5,8 +5,13 @@
   </head>
   <body>
     <div id="fb-root"></div>
-    <script src="http://connect.facebook.net/en_US/all.js"></script>  
-    <script type="text/javascript" src="js/script.js"></script>
+    <div class="section>
+      <div class="sectionTitle">Logs</div>
+      <div class="sectionContent">
+        <textarea rows="10" cols="100" id="logs">
+        </textarea>
+      </div>
+    </div>    
     <div class="section">
       <div class="sectionTitle">Achievements</div>
       <div class="sectionContent">        
@@ -20,6 +25,9 @@
         <div class="description">
           This button will deregister all achievements for application and register them again for http://apps.{$sandbox}facebook.com/mwawro_game (important for quick transitions!!!)
         </div><input type="submit" value="Reregister achievements" onclick="reregisterCheevos('{$sandbox}')" />
-      </div>    
+      </div>
+    </div>    
+    <script src="http://connect.facebook.net/en_US/all.js"></script>  
+    <script type="text/javascript" src="js/script.js"></script>
   </body>
 </html>

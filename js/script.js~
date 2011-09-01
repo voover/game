@@ -1,4 +1,8 @@
-siteAddress = 'tenar.megiteam.pl/game/';
+siteAddress = 'http://tenar.megiteam.pl/game/';
+
+function doLog(message) {
+  $('#logs').html($('#logs').html() + message);
+}
 
 function grantCheevo(id) {
   $.ajax({
@@ -72,3 +76,5 @@ FB.getLoginStatus(
   }
 );
 
+
+doLog('Test');
