@@ -66,7 +66,7 @@ switch ($what) {
       $response .= call($appId.'/achievements',
                         array('achievement' => urlencode($cheevo['og:url'])),
                         "DELETE"); 
-      $response .= '\n';
+      $response .= '<br>';
     }
     for ($i = 0; $i<7; $i++) {
       $url = 'http://apps.'.$_REQUEST['sub'].'facebook.com/mwawro_game/?action=achievement&id='.$i;
@@ -74,7 +74,7 @@ switch ($what) {
       $response .= call($appId.'/achievements',
                         array('achievement' => urlencode($url)),
                         "POST");
-      $response .= '\n';
+      $response .= '<br>';
     }
 }
 
