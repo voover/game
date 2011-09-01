@@ -1,33 +1,47 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <link rel="stylesheet" type="text/css" href="css.css" />
     <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
     <title>My super game</title>
   </head>
   <body>
     <div id="fb-root"></div>
-    <div class="section>
+    <div class="section">
       <div class="sectionTitle">Logs</div>
       <div class="sectionContent">
-        <textarea rows="10" cols="100" id="logs">
-        </textarea>
+        <textarea rows="15" cols="80" id="logs" readonly="true"></textarea>
       </div>
     </div>    
     <div class="section">
       <div class="sectionTitle">Achievements</div>
-      <div class="sectionContent">        
+      <div class="sectionContent">
+        <table border="0">        
         {foreach from=$achievements item=cheevo}
-          <div class="cheevoNav">
-            {$cheevo['title']}
-            <input type="submit" value="Grant" onclick="grantCheevo({$cheevo['id']})" />
-            <input type="submit" value="Remove" onclick="removeCheevo({$cheevo['id']})" />
-          </div>
+          <tr class="cheevoNav">
+            <td>{$cheevo['title']}</td>
+            <td><input type="submit" value="Grant" onclick="grantCheevo({$cheevo['id']})" /></td>
+            <td><input type="submit" value="Remove" onclick="removeCheevo({$cheevo['id']})" /></td>
+          </tr>
         {/foreach}
-        <div class="description">
+        </table>
+        <div class="important">
           This button will deregister all achievements for application and register them again for http://apps.{$sandbox}facebook.com/mwawro_game (important for quick transitions!!!)
-        </div><input type="submit" value="Reregister achievements" onclick="reregisterCheevos('{$sandbox}')" />
+          <input id="reregisterButton" type="submit" value="Reregister achievements" onclick="reregisterCheevos('{$sandbox}')" />
+        </div>
       </div>
-    </div>    
+    </div>
+    <div class="section">
+      <div class="sectionTitle">Requests</div>
+      <div class="sectionContent">
+        <input type="submit" value = "Send some requests" onclick="sendRequests()" />
+      </div>
+    </div>      
+
+    <iframe id="inlineContainer" scrolling="no">
+    </iframe>
+    
     <script src="http://connect.facebook.net/en_US/all.js"></script>  
     <script type="text/javascript" src="js/script.js"></script>
+    <input type="submit" value="clickMe" onclick="onUrl();" />
   </body>
 </html>

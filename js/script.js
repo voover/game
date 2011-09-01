@@ -1,4 +1,4 @@
-siteAddress = 'http://tenar.megiteam.pl/game/';
+siteAddress = '';
 
 function doLog(message) {
   message = message.replace(/<br>/g, '\n');
@@ -6,6 +6,7 @@ function doLog(message) {
     message += '\n';
   }
   $('#logs').html($('#logs').html() + message);
+  $("#logs").scrollTop(99999);  
 }
 
 function grantCheevo(id) {
@@ -27,12 +28,25 @@ function removeCheevo(id) {
 }
 
 function reregisterCheevos(dom) {
+  document.getElementById('reregisterButton').setAttribute('onclick', '');
+  $('#reregisterButton').val('This will take about 15 seconds...');
+
   $.ajax({
     url: siteAddress + '?action=graph&what=reregister&sub='+dom,
     success: function( data ) {
       doLog(data);
+      $('#reregisterButton').val('Done.');
     }
   });
+}
+
+function sendRequests(){
+  FB.ui({method: 'apprequests', message: 'You should learn more about this awesome game.', data: 'tracking information for the user'});
+}
+
+function onUrl(data) {
+  console.log(data.path);
+  $('#inlineContainer').attr('src', data.path.substr(1));
 }
 
 FB.init(
@@ -74,5 +88,8 @@ FB.getLoginStatus(
   }
 );
 
+FB.Canvas.setUrlHandler(onUrl);
 
-doLog('Test');
+$('#inlineContainer').load(function() {
+  $(this).slideDown().delay(2000).fadeOut();
+});

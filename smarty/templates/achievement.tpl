@@ -11,6 +11,6 @@
     <meta property="og:points" content="{$achievement['points']}" />
   </head>
   <body>
-    <img src="{$achievement['image']}" />
+    <img src="{$achievement['image']}" width="234" height="234"/>
   </body>
 </html>

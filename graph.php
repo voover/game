@@ -23,20 +23,43 @@ function call($path, $args, $method = null) {
   return $response;
 }
 
+function getCheevosURLs() {
+  global $appId;
+  $data =
+    call($appId.'/achievements',
+         array('achievement' => $cheevo)
+        );
+  $cheevos = json_decode($data)->data;
+  $urls = array();
+  foreach ($cheevos as $cheevo) {
+    $cheevo = (array)$cheevo;
+    $urls[] = $cheevo['og:url'];
+  }
+  return $urls;
+}
+
+function getCheevoURLById($id) {
+  $urls = getCheevosURLs();
+  foreach ($urls as $url) {
+    if (substr($url,-1) == $id) {
+      return $url;
+    }
+  }
+}
+
 $accessToken =
   call('oauth/access_token',
     array('client_id' => $appId,
           'client_secret' => $clientSecret,
            'redirect_uri' => 'http://tenar.megiteam.pl/game/',
            'grant_type' => 'client_credentials'));
-
 $accessToken = '?'.$accessToken;
 
 $what = $_REQUEST['what'];
 $userId = $_REQUEST['uid'];
 switch ($what) {
   case 'grant_cheevo':
-    $cheevo = urlencode('http://apps.facebook.com/mwawro_game/?action=achievement&id='.$_REQUEST['cheevo']);
+    $cheevo = urlencode(getCheevoURLById($_REQUEST['cheevo']));
     $response =
       call($userId.'/achievements',
            array('achievement' => $cheevo),
@@ -44,7 +67,7 @@ switch ($what) {
           );
      break;
   case 'remove_cheevo':
-    $cheevo = urlencode('http://apps.facebook.com/mwawro_game/?action=achievement&id='.$_REQUEST['cheevo']);
+    $cheevo = urlencode(getCheevoURLById($_REQUEST['cheevo']));
     $response =
       call($userId.'/achievements',
            array('achievement' => $cheevo),
@@ -53,24 +76,19 @@ switch ($what) {
     break;
   case 'reregister':
     $response = '';
-    $data =
-      call($appId.'/achievements',
-           array('achievement' => $cheevo)
-          );
 
-    $cheevos = json_decode($data)->data;
-
-    foreach ($cheevos as $cheevo) {
-      $cheevo = (array)$cheevo;
-      $response .= 'Removing '.$cheevo['og:url'].'... ';
+    $urls = getCheevosURLs();
+    foreach ($urls as $url) {
+      $response .= 'Removing '.$url.' -> ';
       $response .= call($appId.'/achievements',
-                        array('achievement' => urlencode($cheevo['og:url'])),
+                        array('achievement' => urlencode($url)),
                         "DELETE"); 
       $response .= '<br>';
     }
+    
     for ($i = 0; $i<7; $i++) {
       $url = 'http://apps.'.$_REQUEST['sub'].'facebook.com/mwawro_game/?action=achievement&id='.$i;
-      $response .= 'Registering '.$url.'... ';
+      $response .= 'Registering '.$url.' -> ';
       $response .= call($appId.'/achievements',
                         array('achievement' => urlencode($url)),
                         "POST");
