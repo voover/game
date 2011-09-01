@@ -3,8 +3,6 @@
 $appId = '193092110746101';
 $clientSecret = '839d9192d9d01933f498f87d28597562';
 
-https://graph.facebook.com/oauth/access_token?client_id=193092110746101&client_secret=839d9192d9d01933f498f87d28597562&redirect_uri=http://tenar.megiteam.pl&grant_type=client_credentials
-
 $accessToken = "";
 
 function call($path, $args, $method = null) {
@@ -52,6 +50,32 @@ switch ($what) {
            array('achievement' => $cheevo),
            "DELETE"
           );
+    break;
+  case 'reregister':
+    $response = '';
+    $data =
+      call($appId.'/achievements',
+           array('achievement' => $cheevo)
+          );
+
+    $cheevos = json_decode($data)->data;
+
+    foreach ($cheevos as $cheevo) {
+      $cheevo = (array)$cheevo;
+      $response .= 'Removing '.$cheevo['og:url'].'... ';
+      $response .= call($appId.'/achievements',
+                        array('achievement' => urlencode($cheevo['og:url'])),
+                        "DELETE"); 
+      $response .= '\n';
+    }
+    for ($i = 0; $i<7; $i++) {
+      $url = 'http://apps.'.$_REQUEST['sub'].'facebook.com/mwawro_game/?action=achievement&id='.$id;
+      $response .= 'Registering '.$url.'... ';
+      $response .= call($appId.'/achievements',
+                        array('achievement' => urlencode($url)),
+                        "POST");
+      $response .= '\n';
+    }
 }
 
 echo $response;

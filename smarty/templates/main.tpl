@@ -17,6 +17,9 @@
             <input type="submit" value="Remove" onclick="removeCheevo({$cheevo['id']})" />
           </div>
         {/foreach}
+        <div class="description">
+          This button will deregister all achievements for application and register them again for http://apps.{$sandbox}facebook.com/mwawro_game (important for quick transitions!!!)
+        </div><input type="submit" value="Reregister achievements" onclick="reregisterCheevos('{$sandbox}')" />
       </div>    
   </body>
 </html>

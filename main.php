@@ -32,8 +32,9 @@ $achievements =
           'id'    => 6),
           );
 
-
+$sandbox = $_REQUEST['sandbox'];
 $smarty->assign('achievements', $achievements);
+$smarty->assign('sandbox', $sandbox);
 $smarty->display('main.tpl');
   
               

@@ -50,6 +50,32 @@ switch ($what) {
            array('achievement' => $cheevo),
            "DELETE"
           );
+    break;
+  case 'reregister':
+    $response = '';
+    $data =
+      call($appId.'/achievements',
+           array('achievement' => $cheevo)
+          );
+
+    $cheevos = json_decode($data)->data;
+
+    foreach ($cheevos as $cheevo) {
+      $cheevo = (array)$cheevo;
+      $response .= 'Removing '.$cheevo['og:url'].'... ';
+      $response .= call($appId.'/achievements',
+                        array('achievement' => urlencode($cheevo['og:url'])),
+                        "DELETE"); 
+      $response .= '\n';
+    }
+    for ($i = 0; $i<7; $i++) {
+      $url = 'http://apps.'.$_REQUEST['sub'].'facebook.com/mwawro_game/?action=achievement&id='.$i;
+      $response .= 'Registering '.$url.'... ';
+      $response .= call($appId.'/achievements',
+                        array('achievement' => urlencode($url)),
+                        "POST");
+      $response .= '\n';
+    }
 }
 
 echo $response;

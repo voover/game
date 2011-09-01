@@ -1,3 +1,5 @@
+siteAddress = 'tenar.megiteam.pl/game/';
+
 function grantCheevo(id) {
   $.ajax({
     url: 'http://localhost/~mwawro/game/?action=graph&uid='+userID+'&what=grant_cheevo&cheevo='+id,
@@ -12,6 +14,17 @@ function grantCheevo(id) {
 function removeCheevo(id) {
   $.ajax({
     url: 'http://localhost/~mwawro/game/?action=graph&uid='+userID+'&what=remove_cheevo&cheevo='+id,
+    success: function( data ) {
+      if (console && console.log){
+        console.log( 'Sample of data:', data.slice(0,100) );
+      }
+    }
+  });
+}
+
+function reregisterCheevos(dom) {
+  $.ajax({
+    url: 'http://localhost/~mwawro/game/?action=graph&what=reregister&sub='+dom,
     success: function( data ) {
       if (console && console.log){
         console.log( 'Sample of data:', data.slice(0,100) );
@@ -37,7 +50,7 @@ function login_response_validate(perms_string, response){
   }
   return true;
 }
-console.log("!!!");
+
 FB.getLoginStatus(
   function(response) {
     console.log(response);
