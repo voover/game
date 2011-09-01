@@ -1,12 +1,5 @@
 <?php
-
-require('libs/Smarty.class.php');
-$smarty = new Smarty();
-
-$smarty->setTemplateDir('smarty/templates');
-$smarty->setCompileDir('smarty/templates_c');
-$smarty->setCacheDir('smarty/cache');
-$smarty->setConfigDir('smarty/configs');
+require_once('config.php');
 
 $action = $_REQUEST['action'];
 if(!$action) {

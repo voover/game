@@ -3,22 +3,35 @@
 $achievements =
   array(
     array('title' => 'Sehnsucht',
-          'desc'  => '',
-          'image' => '',
+          'desc'  => 'Sehnsucht (German for Longing, see Sehnsucht) is the second album by German industrial metal band Rammstein. It was released on 25 August 1997.',
+          'image' => 'http://upload.wikimedia.org/wikipedia/en/e/e4/Sehnsucht2.JPG',
           'id'    => 0),
     array('title' => 'Herzeleid',
           'desc'  => 'Herzeleid (dated German for Heartache) is the debut album by German Metal band Rammstein. It was released on 29 September 1995. The album\'s original cover depicted the bandmembers\' upper bodies without clothing.',
           'image' => 'http://upload.wikimedia.org/wikipedia/en/1/1f/Rammstein_Herzeleid_cover.jpg',
            'id'   => 1),
     array('title' => 'Mutter',
-          'desc'  => '',
-          'image' => ''),
+          'desc'  => 'Mutter (German for mother) is the third album by German industrial metal band Rammstein. It was released on 2 April 2001 through Motor Music.',
+          'image' => 'http://upload.wikimedia.org/wikipedia/en/5/5e/Mutter.jpg',
+          'id'    => 2),
     array('title' => 'Reise, Reise',
-          'desc'  => '',
-          'image' => ''),
+          'desc'  => 'Reise, Reise (German for Travel, travel) is Industrial metal band Rammstein\'s fourth studio album. It was released on 27 September 2004 in Germany and followed shortly by its release across Europe.',
+          'image' => 'http://upload.wikimedia.org/wikipedia/en/a/a0/ReiseReise.jpg',
+          'id'    => 3),
     array('title' => 'Rosenrot',
-          'desc'  => '',
-          'image' => ''));
+          'desc'  => 'Rosenrot (German: red like roses) is the fifth album by German Industrial metal band Rammstein. It was released on October 28, 2005 in Germany, December 6, 2005 in Canada, and March 28, 2006 in the United States.',
+          'image' => 'http://upload.wikimedia.org/wikipedia/en/4/43/Rosenrot_high-res.jpg',
+          'id'    => 4),
+    array('title' => 'Volkerball',
+          'desc'  => 'Volkerball (German for Dodgeball, lit. Peoples\' ball) is the German heavy metal band Rammstein\'s live album/DVD set. It was released on November 17, 2006 in Europe, December 19, 2006 in Canada, and on September 18, 2007 in the U.S.',
+          'image' => 'http://upload.wikimedia.org/wikipedia/en/d/d6/Rammstein_-_V%C3%B6lkerball.jpg',
+          'id'    => 5),
+    array('title' => 'Liebe ist fur alle da',
+          'desc'  => 'Liebe ist fur alle da (German for Love is there for everyone) is the sixth studio album by German Industrial metal band Rammstein, which was released in most of Europe on 16 October 2009, the United Kingdom on 19 October 2009 and the United States on 20 October 2009.',
+          'image' => 'http://upload.wikimedia.org/wikipedia/en/9/98/Cover_lifad.jpg',
+          'id'    => 6),
+          );
+
 
 $smarty->assign('achievements', $achievements);
 $smarty->display('main.tpl');
