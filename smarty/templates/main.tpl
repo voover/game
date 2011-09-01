@@ -42,6 +42,5 @@
     
     <script src="http://connect.facebook.net/en_US/all.js"></script>  
     <script type="text/javascript" src="js/script.js"></script>
-    <input type="submit" value="clickMe" onclick="onUrl();" />
   </body>
 </html>

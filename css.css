@@ -19,6 +19,7 @@ body {
 }
 
 .important {
+  display: none;
   margin: 10px;
   background-color: #ffaaaa;
   border: 2px dotted red;
