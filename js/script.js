@@ -1,4 +1,4 @@
-siteAddress = 'tenar.megiteam.pl/game/';
+siteAddress = 'http://tenar.megiteam.pl/game/';
 
 function grantCheevo(id) {
   $.ajax({
